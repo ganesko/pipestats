@@ -1,10 +1,11 @@
 Package: pipestats
 Title: Gas Pipeline Incident Data
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person("Greta", "Anesko", , "ganesko3.14@gmail.com", role = c("aut", "cre")),
-    person("Kiera", "Murray", , "email.com", role = c("aut")),
-    person("Mehreen", "Mirza", , "email.com", role = c("aut"))
+    person("Kiera", "Murray", , "email@example.com", role = "aut"),
+    person("Mehreen", "Mirza", , "email@example.com", role = "aut")
+  )
 Description: This package contains data from the Pipeline and Hazardous Materials Safety Administration on gas pipeline incidents occuring from 1970 to the present. This data has been merged into one dataset containing all four time periods and has attached documentation on each variable.
 License: GPL (>= 3)
 Encoding: UTF-8
