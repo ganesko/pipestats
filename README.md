@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# pipestats
+# pipestats <img src='data-raw/pipestats_sticker.png' align="right" height="139"/>
 
 <!-- badges: start -->
 <!-- badges: end -->
