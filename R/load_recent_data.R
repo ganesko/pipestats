@@ -16,7 +16,7 @@
 #' @export
 
 # define function
-pull_recent_data <- function(zip_path = NULL, name = "incident_gas_distribution_jan2010_present") {
+load_recent_data <- function(zip_path = NULL, name = "incident_gas_distribution_jan2010_present") {
   if (is.null(zip_path)) {
     stop("Automatic download disabled. Please provide a local ZIP path.")
   }
