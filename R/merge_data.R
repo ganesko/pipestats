@@ -17,10 +17,17 @@
 merge_data <- function() {
 
   # load data
-  df1 <- read.delim("incident_gas_distribution_1970_mid1984.txt")
-  df2 <- read.delim("incident_gas_distribution_mid1984_feb2004.txt")
-  df3 <- read.delim("incident_gas_distribution_mar2004_dec2009.txt")
-  df4 <- read.delim("incident_gas_distribution_jan2010_present.txt")
+  df1 <- incident_gas_distribution_1970_mid1984
+  df2 <- incident_gas_distribution_mid1984_feb2004
+  df3 <- incident_gas_distribution_mar2004_dec2009
+
+  if (exists(incident_gas_distribution_jan2010_present, envir = .GlobalEnv)) {
+    df4 <- get(incident_gas_distribution_jan2010_present, envir = .GlobalEnv)
+    message("Joining previous data with most recent incident data.")
+  } else {
+    df4 <- incident_gas_distribution_jan2010_mar2025
+    message("Joining previous data with package data up until March 2025.\nSee documentation for load_recent_data() to load most recent data.")
+  }
 
   # extract year from df2 date variable
   df2$IDATE <- ymd(df2$IDATE) # parse df2's incident date variable to Date object

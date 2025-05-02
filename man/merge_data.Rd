@@ -14,7 +14,6 @@ This function prepares the variables in each of the datasets from the four time 
 }
 \examples{
 data <- merge_data()
-print(paste("From 1970 to the present, there have been",as.character(nrow(data)),"gas pipeline incidents in the United States."))
-print(paste("From 1970 to the present, we have",as.character(ncol(data)),"unique variables encoding information on gas pipeline incidents."))
+print(paste("Since 1970, there have been",as.character(nrow(data)),"gas pipeline incidents."))
 
 }
