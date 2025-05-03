@@ -105,7 +105,7 @@ cost_df <- cleaned_full_incident_data_1970_mar2025 %>%
 ggplot(cost_df, aes(x = time_bin_2, y = mean_total_cost, color = MATERIAL, group = MATERIAL)) +
   geom_smooth(method = "loess", se = FALSE) +
   labs(
-    title = "Property Cost Trends of Gas Pipeline Mains Incidents by Material (2004–2024)",
+    title = "Property Cost Trends of Gas Pipeline Mains Incidents by Material",
     x = NULL,
     y = "Mean Total Property Cost (USD) of 2-year Time Interval",
     color = "Material"
