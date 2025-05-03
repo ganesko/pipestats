@@ -48,12 +48,23 @@ library(ggplot2)
 library(lubridate)
 library(scales)
 library(paletteer)
+library(grid)
 
 # filter for mains
 data(cleaned_full_incident_data_1970_mar2025)
 mains_df <- subset(cleaned_full_incident_data_1970_mar2025, select = c(CAUSE, SOURCE, SYSTEM_PART_INVOLVED, LOCAL_DATETIME, NATURAL_FORCE_TYPE)) %>%
   filter(SYSTEM_PART_INVOLVED == "MAIN") %>%
-  mutate(LOCAL_DATETIME = ymd_hms(LOCAL_DATETIME))
+  mutate(LOCAL_DATETIME = ymd_hms(LOCAL_DATETIME)) %>%
+  mutate(Cause = recode_factor(CAUSE, 
+            "ACCIDENTALLY CAUSED BY OPERATOR" = "INCORRECT OPERATION",
+            "CONSTRUCTION DEFECT/MATERIAL FAILURE" = "EQUIPMENT FAILURE",
+            "CONSTRUCTION/OPERATING ERROR" = "INCORRECT OPERATION",
+            "OTHER INCIDENT CAUSE" = "OTHER",
+            "OTHER OUTSIDE FORCE DAMAGE" = "OTHER",
+            "MATERIAL FAILURE" = "EQUIPMENT FAILURE",
+            "CONSTRUCTION DEFECT" = "INCORRECT OPERATION",
+            "PIPE, WELD, OR JOINT FAILURE" = "EQUIPMENT FAILURE")) %>% 
+  filter((Cause != "NO DATA") & (Cause != ""))
 
 # count total observations
 main_n <- nrow(mains_df)
@@ -62,7 +73,7 @@ main_n <- nrow(mains_df)
 mains_df$SOURCE <- factor(mains_df$SOURCE, levels = c("incident_gas_distribution_jan2010_present", "incident_gas_distribution_mar2004_dec2009", "incident_gas_distribution_mid1984_feb2004", "incident_gas_distribution_1970_mid1984"))
 
 # bar plot
-ggplot(mains_df, aes(x=CAUSE, fill=SOURCE)) + 
+ggplot(mains_df, aes(x=Cause, fill=SOURCE)) + 
   geom_bar() +
   coord_flip() + 
   scale_y_continuous(sec.axis = sec_axis(trans = ~./main_n, labels = percent)) +
