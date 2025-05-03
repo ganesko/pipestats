@@ -10,7 +10,7 @@ merge_data()
 A dataframe of the four datasets joined together.
 }
 \description{
-This function prepares the variables in each of the datasets from the four time periods to be joined into one full dataset by renaming direct equivalent variables in df1-3 to their name in df4 and creating equivalent variables to df4 from other variables in df1-3 when they encode equivalent information. This function then joins them, saves it as a .tsv within the package, and returns the data as a dataframe, which the user can then save as a dataframe in their local environment.
+This function prepares the variables in each of the datasets from the four time periods to be joined into one full dataset by renaming direct equivalent variables in df1-3 to their name in df4 and creating equivalent variables to df4 from other variables in df1-3 when they encode equivalent information. This function then joins them and returns the data as a dataframe, which the user can save in their local environment.
 }
 \examples{
 data <- merge_data()

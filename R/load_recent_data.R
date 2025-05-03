@@ -1,6 +1,6 @@
 #' Load Most Recent Gas Pipeline Incident Data from ZIP File
 #' @description
-#' This function loads the most recent gas pipeline incident data from 2010 to present day from a ZIP file downloaded from the Pipeline and Hazardous Materials Safety Administration's website and assigns it to a dataframe by default called "incident_gas_distribution_jan2010_present" in the user's global environment.
+#' This function loads the most recent gas pipeline incident data from 2010 to present day from a ZIP file downloaded from the Pipeline and Hazardous Materials Safety Administration's website and assigns it to a dataframe by default called "incident_gas_distribution_jan2010_present" in the user's global environment. If this default name is kept, then merge_data() will merge the previous incident data from 1970 to 2010 with this most recent incident data.
 #'
 #' @param zip_path Path to the ZIP file containing the .txt data file.
 #' @param name Name of the dataframe to create in the global environment. Defaults to 'incident_gas_distribution_jan2010_present'. If name is changed, merge_data() will not use most recent data.
@@ -8,11 +8,13 @@
 #'
 #' @examples
 #' sample_zip <- system.file("extdata", "incident_sample.zip", package = "pipestats")
-#' pull_recent_data(zip_path = sample_zip, name = "sample_data")
-#' print(paste("The most recent incident in the example dataset occured on:",as.character(sample_data$LOCAL_DATETIME[[1]])))
+#' load_recent_data(zip_path = sample_zip, name = "sample_data")
+#' print("The most recent incident in the example dataset")
+#' print(paste("occurred on:",as.character(sample_data$LOCAL_DATETIME[[1]])))
 #'
 #' @import dplyr
 #' @import lubridate
+#' @import utils
 #' @export
 
 # define function
